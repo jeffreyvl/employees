@@ -12,19 +12,27 @@ import { UserList } from '../../user-list';
 export class OverviewComponent implements OnInit {
   userList: UserList;
   pages: number[];
+  currentPage = 1;
 
   constructor(private userService: UserService) {}
 
-  getUsers(): void {
-    this.userService.getUsers().subscribe(x => {
+  getUsers(page: number): void {
+    this.userService.getUsers(page).subscribe(x => {
       this.userList = x;
-      this.pages = new Array[x.total_pages]();
-      for (let i = 1; i < this.pages.length; i++) {
+      this.pages = new Array(x.total_pages);
+      for (let i = 0; i < this.pages.length; i++) {
         this.pages[i] = i + 1;
       }
     });
   }
+
+  changePage(i: number) {
+      if (i > 0 && i <= this.userList.total_pages) {
+        this.currentPage = i;
+        this.getUsers(i);
+      }
+  }
   ngOnInit() {
-    this.getUsers();
+    this.getUsers(this.currentPage);
   }
 }

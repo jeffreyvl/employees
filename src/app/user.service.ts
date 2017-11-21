@@ -24,8 +24,8 @@ export class UserService {
     private messageService: MessageService
   ) {}
 
-  getUsers(): Observable<UserList> {
-      const api = `${this.url}users?page=1`;
+  getUsers(i: number): Observable<UserList> {
+      const api = `${this.url}users?page=${i}`;
 
     return this.http
       .get<UserList>(api)
