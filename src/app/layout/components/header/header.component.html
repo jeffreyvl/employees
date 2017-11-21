@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="#">{{'Hotel Dashboard' | translate }}</a>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+
+        <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
+        </form>
+        <ul class="navbar-nav ml-auto">
+
+
+            <li class="nav-item dropdown" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                    <i class="fa fa-language"></i> {{ 'Language' | translate }} <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('en')">
+                        {{ 'English' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('nl')">
+                        {{ 'Dutch' | translate }}
+                    </a>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+</nav>
