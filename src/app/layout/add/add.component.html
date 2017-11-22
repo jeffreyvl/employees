@@ -1,13 +1,25 @@
 <app-page-header [heading]="'Create User'" [icon]="'fa fa-user'">
 </app-page-header>
 
-<label>{{'Name' | translate}}
-    <input #name />
-</label>
-<label>{{'Job' | translate}}
-    <input #job />
-</label>
+    <fieldset class="form-group">
+        <label>{{'Name' | translate}}
+            <input class="form-control" #name />
 
-<button (click)="add(name.value,job.value); name.value=''; job.value=''">
-    Create
-</button>
+        </label>
+    </fieldset>
+    <fieldset class="form-group">
+        <label>{{'Job' | translate}}
+            <input class="form-control" #job />
+
+        </label>
+    </fieldset>
+    <button class="button btn-success btn-lg" (click)="add(name.value,job.value); name.value=''; job.value=''">
+        Create
+    </button>
+<div class="error" *ngIf="error">
+    {{error}}
+</div>
+<div class="response" *ngIf="response">
+
+    Created user {{response.name}} with id {{response.id}} and job {{response.job}} at {{response.createdAt | date:'fullDate'}}.
+</div>

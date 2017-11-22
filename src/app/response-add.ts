@@ -2,5 +2,5 @@ export class AddResponse {
     name: string;
     job: string;
     id: number;
-    createdAt: string;
+    createdAt: Date;
 }

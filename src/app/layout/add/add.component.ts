@@ -3,6 +3,7 @@ import { routerTransition } from '../../router.animations';
 import { UserService } from '../../user.service';
 import { UserList } from '../../user-list';
 import { UserAdd } from '../../user-add';
+import { AddResponse } from '../../response-add';
 
 @Component({
   selector: 'app-add',
@@ -11,7 +12,8 @@ import { UserAdd } from '../../user-add';
   animations: [routerTransition()]
 })
 export class AddComponent implements OnInit {
-
+    error: string;
+    response: AddResponse;
     constructor(private userService: UserService) {}
 
 
@@ -19,7 +21,13 @@ export class AddComponent implements OnInit {
         name = name.trim();
         job = job.trim();
 
-        this.userService.addUser({ name, job} as UserAdd).subscribe();
+        if (!name || !job) {
+            this.response = undefined;
+            this.error = 'Please fill in all the fields!';
+            return;
+        }
+        this.error = '';
+        this.userService.addUser({ name, job} as UserAdd).subscribe(x => this.response = x);
       }
 
   ngOnInit() {
