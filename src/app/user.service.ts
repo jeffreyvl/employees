@@ -9,7 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { UserAdd } from './user-add';
+import { UserEdit } from './user-edit';
 import { AddResponse } from './response-add';
+import { EditResponse } from './response-edit';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -43,7 +45,6 @@ export class UserService {
       );
   }
 
-<<<<<<< HEAD
   getUserById(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
     return this.http.get<User>(api).pipe(
@@ -52,7 +53,6 @@ export class UserService {
     );
   }
   
-=======
   addUser(user: UserAdd): Observable<AddResponse> {
       const api = `${this.url}users`;
       return this.http.post<AddResponse>(api, user, httpOptions)
@@ -62,7 +62,15 @@ export class UserService {
       );
   }
 
->>>>>>> 5555036d1dedeeb010dd7467bf3f3de4c1907603
+  editUser(user: UserEdit): Observable<EditResponse> {
+    const api = `${this.url}users`;
+    return this.http.post<EditResponse>(api, user, httpOptions)
+    .pipe(
+        tap( () => console.log(`user edited`)),
+        catchError(this.errorService.handleError<EditResponse>(`editUser`))
+    );
+}
+
   delUser(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
 

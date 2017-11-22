@@ -1,7 +1,30 @@
+<app-page-header [heading]="Details" [icon]="'fa fa-user'">
+</app-page-header>  
+
 <div *ngIf="user">
-  <h2>Details of {{ user.data.first_name | uppercase }} </h2>
-  <div><span>id: </span>{{user.data.id}}</div>
-  <div><label>first name: {{ user.data.first_name}}</label></div>
-  <div><label>last name: {{ user.data.last_name}}</label></div>
-  <button (click)="save()">save</button>
+  <h2>{{ user.data.first_name | uppercase }} {{ user.data.last_name | uppercase }} with ID{{user.data.id}}</h2>
+  <br>
+  <td>
+    <img src="{{user.data.avatar}}">
+  </td>
+
+  <br>
+
+  <fieldset class="form-group">
+    <label>First name
+      <input [(ngModel)]="user.data.first_name" class="form-control" />
+    </label>
+  </fieldset>
+
+    <fieldset class="form-group">
+      <label>Last name
+        <input [(ngModel)]="user.data.last_name" class="form-control" />
+      </label>
+    </fieldset>
+
+    <button class="button btn-success btn-lg" (click)= "editUserByName">
+      Save changes 
+    </button>
 </div>
+
+
