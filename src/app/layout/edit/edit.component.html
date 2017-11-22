@@ -11,18 +11,18 @@
   <br>
 
   <fieldset class="form-group">
-    <label>First name
-      <input [(ngModel)]="user.data.first_name" class="form-control" />
+    <label>First Name
+      <input [(ngModel)]="user.data.first_name" #lastname class="form-control" />
     </label>
   </fieldset>
 
     <fieldset class="form-group">
-      <label>Last name
-        <input [(ngModel)]="user.data.last_name" class="form-control" />
+      <label>Last Name
+        <input [(ngModel)]="user.data.last_name" #firstname class="form-control" />
       </label>
     </fieldset>
 
-    <button class="button btn-success btn-lg" (click)= "editUserByName">
+    <button class="button btn-success btn-lg" (click)="editEmployee(name.value,job.value); name.value=''; job.value=''">
       Save changes 
     </button>
 </div>

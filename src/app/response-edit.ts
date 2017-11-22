@@ -1,4 +1,5 @@
 export class EditResponse {
-    first_name: string;
-    last_name: string;
+    name: string;
+    job: string;
+    updatedAt: Date; 
 }
