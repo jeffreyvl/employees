@@ -42,7 +42,7 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    const api = `${this.url}${id}`;
+    const api = `${this.url}users/${id}`;
     return this.http.get<User>(api).pipe(
       tap(_ => this.log(`fetched user id=${id}`)),
       catchError(this.errorService.handleError<User>(`getUser id=${id}`))
