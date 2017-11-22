@@ -33,16 +33,16 @@
             </div>
             <nav>
                 <ul class="pagination" *ngIf="pages">
-                    <li class="page-itemd">
-                        <a class="page-link" (click)="changePage(currentPage-1)" href="javascript:;" tabindex="-1">Previous</a>
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                        <a class="page-link"  href="/overview/{{currentPage-1}}" tabindex="-1">Previous</a>
                     </li>
                     <span *ngFor="let i of pages">
-                        <li class="page-item" [class.active]="i=== currentPage">
-                            <a class="page-link" (click)="changePage(i)" href="javascript:;">{{i}}</a>
+                        <li class="page-item" [class.active]="i === currentPage">
+                            <a class="page-link"  href="/overview/{{i}}">{{i}}</a>
                         </li>
                     </span>
-                    <li class="page-item">
-                        <a class="page-link" (click)="changePage(currentPage+1)" href="javascript:;">Next</a>
+                    <li class="page-item" [class.disabled]="currentPage === userList.total_pages">
+                        <a class="page-link"  href="/overview/{{currentPage+1}}">Next</a>
                     </li>
                 </ul>
             </nav>

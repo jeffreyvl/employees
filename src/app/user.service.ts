@@ -27,6 +27,10 @@ export class UserService {
   getUsers(i: number): Observable<UserList> {
       const api = `${this.url}users?page=${i}`;
 
+        if (i === undefined) {
+            i = 1;
+        }
+
     return this.http
       .get<UserList>(api)
       .pipe(
