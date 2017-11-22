@@ -50,9 +50,7 @@ export class UserService {
     );
   }
 
-//   mapGetUser (data): User {
-//     return new User(data.id, data.first_name + data.lastName, data.avatar, data.first_name, data.last_name );
-//   }
+
 
   addUser(user: User): Observable<User> {
       const api = `${this.url}users`;
@@ -63,9 +61,7 @@ export class UserService {
       );
   }
 
-//   mapAddUser(data): User {
-//         return new User(undefined)
-//   }
+
   delUser(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
 

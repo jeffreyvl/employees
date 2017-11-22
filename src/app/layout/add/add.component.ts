@@ -15,7 +15,7 @@ import { User } from '../../user';
 export class AddComponent implements OnInit {
     error: string;
 
-    constructor(private userService: UserService, private errorService: ErrorService, private messageService: MessageService) { }
+    constructor(private errorService: ErrorService, private userService: UserService, private messageService: MessageService) { }
 
 
     add(name: string, job: string): void {
