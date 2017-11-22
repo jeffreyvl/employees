@@ -8,8 +8,6 @@ import { ErrorService } from './error.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { UserAdd } from './user-add';
-import { AddResponse } from './response-add';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -45,20 +43,29 @@ export class UserService {
 
   getUserById(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
-    return this.http.get<User>(api).pipe(
+    return this.http.get<any>(api).pipe(
+      map(body => body.data),
       tap(_ => this.log(`fetched user id=${id}`)),
       catchError(this.errorService.handleError<User>(`getUser id=${id}`))
     );
   }
 
-  addUser(user: UserAdd): Observable<AddResponse> {
+//   mapGetUser (data): User {
+//     return new User(data.id, data.first_name + data.lastName, data.avatar, data.first_name, data.last_name );
+//   }
+
+  addUser(user: User): Observable<User> {
       const api = `${this.url}users`;
-      return this.http.post<AddResponse>(api, user, httpOptions)
+      return this.http.post<any>(api, user, httpOptions)
       .pipe(
           tap( () => console.log(`added user`)),
-          catchError(this.errorService.handleError<AddResponse>(`addUser`))
+          catchError(this.errorService.handleError<User>(`addUser`))
       );
   }
+
+//   mapAddUser(data): User {
+//         return new User(undefined)
+//   }
   delUser(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
 

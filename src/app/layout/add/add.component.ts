@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { UserService } from '../../user.service';
 import { UserList } from '../../user-list';
-import { UserAdd } from '../../user-add';
-import { AddResponse } from '../../response-add';
 import { ErrorService } from '../../error.service';
 import { MessageService } from '../../message.service';
+import { User } from '../../user';
 
 @Component({
     selector: 'app-add',
@@ -30,7 +29,7 @@ export class AddComponent implements OnInit {
         }
         this.clear();
 
-        this.userService.addUser({ name, job } as UserAdd).subscribe(x => {
+        this.userService.addUser({ name, job } as User).subscribe(x => {
             const temp = `Created user ${x.name} with id ${x.id} and job ${x.job} at ${x.createdAt}`;
             this.messageService.add(temp);
         });

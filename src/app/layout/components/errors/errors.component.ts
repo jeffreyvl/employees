@@ -15,7 +15,6 @@ export class ErrorsComponent implements OnInit {
         this.errorService.errorStream.subscribe(x => this.error = x);
     }
     ngOnInit() {
-
     }
 
 }
