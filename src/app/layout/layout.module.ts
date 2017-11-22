@@ -7,6 +7,10 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ErrorsComponent } from './components/errors/errors.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ErrorService } from '../error.service';
+import { MessageService} from '../message.service';
 
 @NgModule({
     imports: [
@@ -15,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
         TranslateModule,
         NgbDropdownModule.forRoot()
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, ErrorsComponent, MessagesComponent],
+    providers: [ErrorService, MessageService]
 })
 export class LayoutModule {}
