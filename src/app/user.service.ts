@@ -27,6 +27,10 @@ export class UserService {
   getUsers(i: number): Observable<UserList> {
       const api = `${this.url}users?page=${i}`;
 
+        if (i === undefined) {
+            i = 1;
+        }
+
     return this.http
       .get<UserList>(api)
       .pipe(
@@ -35,6 +39,23 @@ export class UserService {
         }),
         catchError(this.errorService.handleError('getUsers', new UserList()))
       );
+  }
+
+  getUserById(id: number): Observable<User> {
+    const api = `${this.url}${id}`;
+    return this.http.get<User>(api).pipe(
+      tap(_ => this.log(`fetched user id=${id}`)),
+      catchError(this.errorService.handleError<User>(`getUser id=${id}`))
+    );
+  }
+  
+  delUser(id: number): Observable<User> {
+    const api = `${this.url}users/${id}`;
+
+    return this.http.delete<User>(api, httpOptions).pipe(
+        tap(_ => this.log(`deleted user id=${id}`)),
+        catchError(this.errorService.handleError<User>('delUser'))
+    );
   }
 
   log(message: string): void {

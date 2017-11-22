@@ -1,0 +1,7 @@
+<div *ngIf="user">
+  <h2>{{ user.data.first_name | uppercase }} Details</h2>
+  <div><span>id: </span>{{user.id}}</div>
+  <div><label>first name:</label></div>
+  <div><label>last name:</label></div>
+  <button (click)="save()">save</button>
+</div>

@@ -9,6 +9,7 @@ import { UserList } from '../../user-list';
   styleUrls: ['./overview.component.scss'],
   animations: [routerTransition()]
 })
+
 export class OverviewComponent implements OnInit {
   userList: UserList;
   pages: number[];
@@ -31,6 +32,11 @@ export class OverviewComponent implements OnInit {
         this.currentPage = i;
         this.getUsers(i);
       }
+  }
+
+  delete(id: number) {
+        this.userList.data = this.userList.data.filter(x => x.id !== id);
+        this.userService.delUser(id).subscribe();
   }
   ngOnInit() {
     this.getUsers(this.currentPage);
