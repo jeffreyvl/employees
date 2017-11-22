@@ -1,0 +1,13 @@
+<app-page-header [heading]="'Create User'" [icon]="'fa fa-user'">
+</app-page-header>
+
+<label>{{'Name' | translate}}
+    <input #name />
+</label>
+<label>{{'Job' | translate}}
+    <input #job />
+</label>
+
+<button (click)="add(name.value,job.value); name.value=''; job.value=''">
+    Create
+</button>

@@ -8,6 +8,8 @@ import { ErrorService } from './error.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { UserAdd } from './user-add';
+import { AddResponse } from './response-add';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,6 +40,15 @@ export class UserService {
             console.log('Fetched Users');
         }),
         catchError(this.errorService.handleError('getUsers', new UserList()))
+      );
+  }
+
+  addUser(user: UserAdd): Observable<AddResponse> {
+      const api = `${this.url}users`;
+      return this.http.post<AddResponse>(api, user, httpOptions)
+      .pipe(
+          tap( () => console.log(`added user`)),
+          catchError(this.errorService.handleError<AddResponse>(`addUser`))
       );
   }
 
