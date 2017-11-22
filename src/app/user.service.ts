@@ -43,6 +43,16 @@ export class UserService {
       );
   }
 
+<<<<<<< HEAD
+  getUserById(id: number): Observable<User> {
+    const api = `${this.url}users/${id}`;
+    return this.http.get<User>(api).pipe(
+      tap(_ => this.log(`fetched user id=${id}`)),
+      catchError(this.errorService.handleError<User>(`getUser id=${id}`))
+    );
+  }
+  
+=======
   addUser(user: UserAdd): Observable<AddResponse> {
       const api = `${this.url}users`;
       return this.http.post<AddResponse>(api, user, httpOptions)
@@ -52,6 +62,7 @@ export class UserService {
       );
   }
 
+>>>>>>> 5555036d1dedeeb010dd7467bf3f3de4c1907603
   delUser(id: number): Observable<User> {
     const api = `${this.url}users/${id}`;
 

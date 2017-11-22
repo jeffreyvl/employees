@@ -16,6 +16,7 @@
                                 <th>{{'Last Name' | translate}} </th>
                                 <th>Avatar</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody *ngIf="userList">
@@ -25,6 +26,11 @@
                                 <td>{{user.last_name}} </td>
                                 <td>
                                     <img src="{{user.avatar}}">
+                                </td>
+                                <td>
+                                    <a href="/edit/{{user.id}}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <a (click)="delete(user.id)" href="javascript:;">

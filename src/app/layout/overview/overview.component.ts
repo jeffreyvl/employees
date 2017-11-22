@@ -9,6 +9,7 @@ import { UserList } from '../../user-list';
   styleUrls: ['./overview.component.scss'],
   animations: [routerTransition()]
 })
+
 export class OverviewComponent implements OnInit {
   userList: UserList;
   pages: number[];
