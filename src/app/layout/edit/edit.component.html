@@ -1,29 +1,30 @@
-<app-page-header [heading]="Details" [icon]="'fa fa-user'">
-</app-page-header>  
+<app-page-header [heading]="'Edit'" [icon]="'fa fa-user'">
+</app-page-header>
 
 <div *ngIf="user">
-  <h2>{{ user.data.first_name | uppercase }} {{ user.data.last_name | uppercase }} with ID{{user.data.id}}</h2>
+  <h2>{{ user.firstName | uppercase }} {{ user.lastName | uppercase }} with ID {{user.id}}</h2>
   <br>
   <td>
-    <img src="{{user.data.avatar}}">
+    <img src="{{user.avatar}}">
   </td>
 
   <br>
 
+  <input [ngModel]="user.id" #id hidden>
   <fieldset class="form-group">
     <label>First Name
-      <input [(ngModel)]="user.data.first_name" #lastname class="form-control" />
+      <input [(ngModel)]="user.firstName" #firstName class="form-control" />
     </label>
   </fieldset>
 
     <fieldset class="form-group">
       <label>Last Name
-        <input [(ngModel)]="user.data.last_name" #firstname class="form-control" />
+        <input [(ngModel)]="user.lastName" #lastName class="form-control" />
       </label>
     </fieldset>
 
-    <button class="button btn-success btn-lg" (click)="editEmployee(name.value,job.value); name.value=''; job.value=''">
-      Save changes 
+    <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="edit(firstName.value,lastName.value, id.value)">
+      {{ 'Save Changes' | translate }}
     </button>
 </div>
 

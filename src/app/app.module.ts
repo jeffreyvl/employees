@@ -9,11 +9,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EditComponent } from './layout/edit/edit.component';
+import { MessageService } from './service/message.service';
+import { ErrorService } from './service/error.service';
+import { UserService } from './service/user.service';
 
 
 export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/localization/', '.json');
 }
 
 @NgModule({
@@ -33,7 +35,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [],
+    providers: [UserService, ErrorService, MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

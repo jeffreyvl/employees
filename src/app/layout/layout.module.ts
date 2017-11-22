@@ -9,8 +9,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ErrorsComponent } from './components/errors/errors.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { ErrorService } from '../error.service';
-import { MessageService} from '../message.service';
 
 @NgModule({
     imports: [
@@ -19,7 +17,6 @@ import { MessageService} from '../message.service';
         TranslateModule,
         NgbDropdownModule.forRoot()
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, ErrorsComponent, MessagesComponent],
-    providers: [ErrorService, MessageService]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, ErrorsComponent, MessagesComponent]
 })
 export class LayoutModule {}

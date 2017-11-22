@@ -2,17 +2,17 @@
 </app-page-header>
 
     <fieldset class="form-group">
-        <label>{{'Name' | translate}}
-            <input class="form-control" #name />
+        <label>{{'First Name' | translate}}
+            <input class="form-control" #firstName />
 
         </label>
     </fieldset>
     <fieldset class="form-group">
-        <label>{{'Job' | translate}}
-            <input class="form-control" #job />
+        <label>{{'Last Name' | translate}}
+            <input class="form-control" #lastName />
 
         </label>
     </fieldset>
-    <button class="button btn-success btn-lg" (click)="add(name.value,job.value); name.value=''; job.value=''">
+    <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="add(firstName.value,lastName.value); firstName.value=''; lastName.value=''">
         Create
     </button>

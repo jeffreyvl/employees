@@ -13,5 +13,7 @@
     "Employees" : "Werknemers",
     "First Name" : "Voornaam",
     "Last Name" : "Achternaam",
-    "Create User": "Gebruiker Aanmaken"
+    "Create User": "Gebruiker Aanmaken",
+    "Edit" : "Bewerken",
+    "Save Changes" : "Opslaan"
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ErrorService } from '../../../error.service';
+import { ErrorService } from '../../../service/error.service';
 
 @Component({
     selector: 'app-errors',
@@ -13,6 +13,10 @@ export class ErrorsComponent implements OnInit {
     error: string;
     constructor(private errorService: ErrorService) {
         this.errorService.errorStream.subscribe(x => this.error = x);
+    }
+
+    clear(): void {
+        this.errorService.clear();
     }
     ngOnInit() {
     }

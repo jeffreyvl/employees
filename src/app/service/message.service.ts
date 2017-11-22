@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class MessageService {
+
     private messages: string[] = [];
     messageStream: Subject<string>;
 
@@ -17,10 +18,6 @@ export class MessageService {
     }
 
     clear() {
-        this.messages = [];
-    }
-
-    clearLatest() {
         this.messageStream.next();
     }
 }

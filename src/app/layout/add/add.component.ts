@@ -1,47 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { UserService } from '../../user.service';
-import { UserList } from '../../user-list';
-import { ErrorService } from '../../error.service';
-import { MessageService } from '../../message.service';
-import { User } from '../../user';
+
+import { ErrorService } from '../../service/error.service';
+import { MessageService } from '../../service/message.service';
+import { User } from '../../model/user';
+import { UserService } from '../../service/user.service';
 
 @Component({
-    selector: 'app-add',
-    templateUrl: './add.component.html',
-    styleUrls: ['./add.component.scss'],
-    animations: [routerTransition()]
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
+  animations: [routerTransition()]
 })
 export class AddComponent implements OnInit {
-    error: string;
+  error: string;
 
-    constructor(private errorService: ErrorService, private userService: UserService, private messageService: MessageService) { }
+  constructor(
+    private errorService: ErrorService,
+    private userService: UserService,
+    private messageService: MessageService
+  ) {}
 
+  add(firstName: string, lastName: string): void {
+    firstName = firstName.trim();
+    lastName = lastName.trim();
 
-    add(name: string, job: string): void {
-        name = name.trim();
-        job = job.trim();
-
-        if (!name || !job) {
-            this.clear();
-            this.errorService.add('Please fill in all the fields');
-            return;
-        }
-        this.clear();
-
-        this.userService.addUser({ name, job } as User).subscribe(x => {
-            const temp = `Created user ${x.name} with id ${x.id} and job ${x.job} at ${x.createdAt}`;
-            this.messageService.add(temp);
-        });
+    if (!firstName || !lastName) {
+      this.errorService.add('Please fill in all the fields');
+      return;
     }
 
-    private clear() {
-        this.messageService.clearLatest();
-        this.errorService.clearLatest();
-    }
+    this.userService.addUser({ firstName, lastName } as User).subscribe(x => {
+        const timeStamp = new Date(x.createdAt).toLocaleString();
+        const temp = `Created user ${x.firstName} ${x.lastName} with id ${x.id} at ${timeStamp}`;
+        this.messageService.add(temp);
+    });
+  }
 
-    ngOnInit() {
-        this.clear();
-    }
 
+  ngOnInit() {
+  }
 }

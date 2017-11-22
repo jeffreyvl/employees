@@ -1,15 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../user';
-import { UserService } from '../../user.service';
+import { User } from '../../model/user';
+import { UserService } from '../../service/user.service';
 import { routerTransition } from '../../router.animations';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { UserEdit} from '../../user-edit';
-import { EditResponse } from '../../response-edit';
-import { MessageService } from '../../message.service';
-import { UserAdd } from '../../user-add';
-import { ErrorService } from '../../error.service';
+import { MessageService } from '../../service/message.service';
+import { ErrorService } from '../../service/error.service';
 
 @Component({
   selector: 'app-edit',
@@ -18,8 +15,7 @@ import { ErrorService } from '../../error.service';
   animations: [routerTransition()]
 })
 export class EditComponent implements OnInit {
-  @Input() user: User;
-  error: string;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,37 +23,31 @@ export class EditComponent implements OnInit {
     private userService: UserService,
     private errorService: ErrorService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
-    getUserById(): void {
+  getUser(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUserById(id)
-      .subscribe(user => this.user = user);
+    this.userService.getUser(id).subscribe(user => (this.user = user));
   }
-  
-  editEmployee(name: string, job: string): void {
-    name = name.trim();
-    job = job.trim();
 
-    if (!name || !job) {
-      this.clear();
+  edit(firstName: string, lastName: string, id: number): void {
+    firstName = firstName.trim();
+    lastName = lastName.trim();
+
+    if (!firstName || !lastName) {
       this.errorService.add('Please fill in all the fields');
       return;
-  }
-  this.clear();
-
-  this.userService.editUser({ name, job } as UserEdit).subscribe(x => {
-      const temp = `Created user ${x.name} with job ${x.job} at ${x.updatedAt}`;
-      this.messageService.add(temp);
-  });
-}
-    private clear() {
-      this.messageService.clearLatest();
-      this.errorService.clearLatest();
     }
 
+    this.userService.editUser({ firstName, lastName, id } as User).subscribe(x => {
+        const timeStamp = new Date(x.updatedAt).toLocaleString();
+        const temp = `Updated user to ${x.firstName} ${x.lastName} at ${timeStamp}`;
+        this.messageService.add(temp);
+    });
+  }
+
+
   ngOnInit() {
-    this.getUserById()
-    this.clear();
+    this.getUser();
   }
 }

@@ -19,11 +19,11 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody *ngIf="userList">
-                            <tr *ngFor="let user of userList.data">
+                        <tbody *ngIf="response">
+                            <tr *ngFor="let user of response.users">
                                 <td scope="row">{{user.id}}</td>
-                                <td>{{user.first_name}}</td>
-                                <td>{{user.last_name}} </td>
+                                <td>{{user.firstName}}</td>
+                                <td>{{user.lastName}} </td>
                                 <td>
                                     <img src="{{user.avatar}}">
                                 </td>
@@ -53,7 +53,7 @@
                             <a class="page-link" (click)="changePage(i)" href="javascript:;">{{i}}</a>
                         </li>
                     </span>
-                    <li class="page-item" [class.disabled]="currentPage === userList.total_pages">
+                    <li class="page-item" [class.disabled]="currentPage === response.totalPages">
                         <a class="page-link" (click)="changePage(currentPage+1)" href="javascript:;">Next</a>
                     </li>
                 </ul>
