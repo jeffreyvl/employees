@@ -15,6 +15,7 @@
                                 <th>{{'First Name' | translate}}</th>
                                 <th>{{'Last Name' | translate}} </th>
                                 <th>Avatar</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody *ngIf="userList">
@@ -25,6 +26,11 @@
                                 <td>
                                     <img src="{{user.avatar}}">
                                 </td>
+                                <td>
+                                    <a (click)="delete(user.id)" href="javascript:;">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -34,15 +40,15 @@
             <nav>
                 <ul class="pagination" *ngIf="pages">
                     <li class="page-item" [class.disabled]="currentPage === 1">
-                        <a class="page-link"  href="/overview/{{currentPage-1}}" tabindex="-1">Previous</a>
+                        <a class="page-link" (click)="changePage(currentPage-1)" href="javascript:;" tabindex="-1">Previous</a>
                     </li>
                     <span *ngFor="let i of pages">
                         <li class="page-item" [class.active]="i === currentPage">
-                            <a class="page-link"  href="/overview/{{i}}">{{i}}</a>
+                            <a class="page-link" (click)="changePage(i)" href="javascript:;">{{i}}</a>
                         </li>
                     </span>
                     <li class="page-item" [class.disabled]="currentPage === userList.total_pages">
-                        <a class="page-link"  href="/overview/{{currentPage+1}}">Next</a>
+                        <a class="page-link" (click)="changePage(currentPage+1)" href="javascript:;">Next</a>
                     </li>
                 </ul>
             </nav>

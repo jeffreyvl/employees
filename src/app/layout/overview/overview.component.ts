@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { UserService } from '../../user.service';
 import { UserList } from '../../user-list';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-overview',
@@ -16,17 +14,10 @@ export class OverviewComponent implements OnInit {
   pages: number[];
   currentPage = 1;
 
-  constructor(
-      private userService: UserService,
-      private route: ActivatedRoute,
-      private location: Location
-) {}
+  constructor(private userService: UserService) {}
 
-  getUsers(): void {
-    const page = +this.route.snapshot.paramMap.get('page');
-    this.currentPage = page;
-
-    this.userService.getUsers(this.currentPage).subscribe(x => {
+  getUsers(page: number): void {
+    this.userService.getUsers(page).subscribe(x => {
       this.userList = x;
       this.pages = new Array(x.total_pages);
       for (let i = 0; i < this.pages.length; i++) {
@@ -35,7 +26,18 @@ export class OverviewComponent implements OnInit {
     });
   }
 
+  changePage(i: number) {
+      if (i > 0 && i <= this.userList.total_pages) {
+        this.currentPage = i;
+        this.getUsers(i);
+      }
+  }
+
+  delete(id: number) {
+        this.userList.data = this.userList.data.filter(x => x.id !== id);
+        this.userService.delUser(id).subscribe();
+  }
   ngOnInit() {
-    this.getUsers();
+    this.getUsers(this.currentPage);
   }
 }

@@ -41,6 +41,15 @@ export class UserService {
       );
   }
 
+  delUser(id: number): Observable<User> {
+    const api = `${this.url}users/${id}`;
+
+    return this.http.delete<User>(api, httpOptions).pipe(
+        tap(_ => this.log(`deleted user id=${id}`)),
+        catchError(this.errorService.handleError<User>('delUser'))
+    );
+  }
+
   log(message: string): void {
       this.messageService.add(message);
   }
