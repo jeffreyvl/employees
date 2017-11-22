@@ -16,10 +16,3 @@
     <button class="button btn-success btn-lg" (click)="add(name.value,job.value); name.value=''; job.value=''">
         Create
     </button>
-<div class="error" *ngIf="error">
-    {{error}}
-</div>
-<div class="response" *ngIf="response">
-
-    Created user {{response.name}} with id {{response.id}} and job {{response.job}} at {{response.createdAt | date:'fullDate'}}.
-</div>
