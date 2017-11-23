@@ -15,11 +15,12 @@ export class OverviewComponent implements OnInit {
   pages: number[];
   currentPage = 1;
   response: Response;
+  perPage = 3;
   constructor(private userService: UserService) {}
 
   getUsers(page: number): void {
 
-    this.userService.getUsers(page).subscribe(x => {
+    this.userService.getUsers(page, this.perPage).subscribe(x => {
         this.response = x;
       this.pages = new Array(x.totalPages);
       for (let i = 0; i < this.pages.length; i++) {

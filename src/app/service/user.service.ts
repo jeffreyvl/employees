@@ -24,9 +24,9 @@ export class UserService {
     private messageService: MessageService
   ) {}
 
-  getUsers(i: number): Observable<Response> {
+  getUsers(i: number, perPage: number): Observable<Response> {
 
-    const api = `${this.url}users?page=${i}`;
+    const api = `${this.url}users?page=${i}&per_page=${perPage}`;
 
     if (i === undefined) {
       i = 1;
