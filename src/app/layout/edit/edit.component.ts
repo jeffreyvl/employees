@@ -40,12 +40,14 @@ export class EditComponent implements OnInit {
     }
 
     this.userService.editUser({ firstName, lastName, id } as User).subscribe(x => {
+        this.user.firstName = firstName;
+        this.user.lastName = lastName;
+        this.user.id = id;
         const timeStamp = new Date(x.updatedAt).toLocaleString();
         const temp = `Updated user to ${x.firstName} ${x.lastName} at ${timeStamp}`;
         this.messageService.add(temp);
     });
   }
-
 
   ngOnInit() {
     this.getUser();
