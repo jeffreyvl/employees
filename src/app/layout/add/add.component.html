@@ -14,6 +14,6 @@
         </label>
     </fieldset>
     <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="add(firstName.value,lastName.value); firstName.value=''; lastName.value=''">
-        Create
+        {{ 'Create' | translate }}
     </button>
 </div>
