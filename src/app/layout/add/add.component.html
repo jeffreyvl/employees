@@ -1,6 +1,6 @@
 <app-page-header [heading]="'Create User'" [icon]="'fa fa-user'">
 </app-page-header>
-
+<div [@routerTransition]>
     <fieldset class="form-group">
         <label>{{'First Name' | translate}}
             <input class="form-control" #firstName />
@@ -16,3 +16,4 @@
     <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="add(firstName.value,lastName.value); firstName.value=''; lastName.value=''">
         Create
     </button>
+</div>

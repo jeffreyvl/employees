@@ -1,31 +1,32 @@
-<app-page-header [heading]="'Edit'" [icon]="'fa fa-user'">
-</app-page-header>
 
-<div *ngIf="user">
-  <h2>{{ user.firstName | uppercase }} {{ user.lastName | uppercase }} with ID {{user.id}}</h2>
-  <br>
-  <td>
-    <img src="{{user.avatar}}">
-  </td>
+    <app-page-header [heading]="'Edit'" [icon]="'fa fa-user'">
+    </app-page-header>
+    <div [@routerTransition]>
+    <div *ngIf="user">
+        <h2>{{ user.firstName | uppercase }} {{ user.lastName | uppercase }} with ID {{user.id}}</h2>
+        <br>
+        <td>
+            <img src="{{user.avatar}}">
+        </td>
 
-  <br>
+        <br>
 
-  <input [ngModel]="user.id" #id hidden>
-  <fieldset class="form-group">
-    <label>First Name
-      <input [(ngModel)]="user.firstName" #firstName class="form-control" />
-    </label>
-  </fieldset>
+        <input [ngModel]="user.id" #id hidden>
+        <fieldset class="form-group">
+            <label>First Name
+                <input [(ngModel)]="user.firstName" #firstName class="form-control" />
+            </label>
+        </fieldset>
 
-    <fieldset class="form-group">
-      <label>Last Name
-        <input [(ngModel)]="user.lastName" #lastName class="form-control" />
-      </label>
-    </fieldset>
+        <fieldset class="form-group">
+            <label>Last Name
+                <input [(ngModel)]="user.lastName" #lastName class="form-control" />
+            </label>
+        </fieldset>
 
-    <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="edit(firstName.value,lastName.value, id.value)">
-      {{ 'Save Changes' | translate }}
-    </button>
+        <button style="cursor:pointer" class="btn btn-success btn-lg" (click)="edit(firstName.value,lastName.value, id.value)">
+            {{ 'Save Changes' | translate }}
+        </button>
+    </div>
+
 </div>
-
-
