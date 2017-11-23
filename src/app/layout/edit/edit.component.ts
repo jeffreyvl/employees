@@ -39,6 +39,7 @@ export class EditComponent implements OnInit {
       return;
     }
 
+    // method altered for testing purpose
     this.userService.editUser({ firstName, lastName, id } as User).subscribe(x => {
         this.user.firstName = firstName;
         this.user.lastName = lastName;
